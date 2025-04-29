@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <div id="content" class="scale-90">
+        <div class="grid grid-cols-12">
+            <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+            <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4" > <!-- 12 grid ki space le ra h -->
+            
+                <!-- card -->
+                <!-- <div class="scale-90"> -->
+                
+                    <div class="block p-5 bg-white border border-t-8 border-t-green-600 border-gray-600 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-t-green-600 dark:border-gray-600 dark:hover:bg-gray-900">
+                        
+                        <!-- message here -->
+                        <div data-th-replace="~{message::messagebox}"></div>
+
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Login here</h5>
+                        <p class="font-normal text-gray-500 dark:text-gray-400">Start managing contacts on cloud...</p>
+
+                        <div class="flex items-center p-2 my-2 text-sm text-red-700 rounded-lg bg-red-50 dark:bg-gray-700 dark:text-red-400"
+                         role="alert"
+                         data-th-if="${param.error}">                          
+                               Incorrect username or password.
+                        </div>
+                        <div class="flex items-center p-2 my-2 text-sm text-green-700 rounded-lg bg-green-50 dark:bg-gray-700 dark:text-green-400" 
+                        role="alert"
+                        data-th-if="${param.logout}">                          
+                               You have been logged out.                           
+                        </div>
+
+                        <!-- this is form -->
+                        <form 
+                        method="post"
+                        data-th-action="@{'authenticate'}"
+                        class="mt-5" novalidate>
+
+                            
+                            <!-- email/ user-name field -->
+                            <div class="mb-3">
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input 
+                                  name="email"
+                                  type="email" 
+                                  id="email" 
+                                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" name@gmail.com" required />
+                                <!-- <p 
+                                    data-th-if="${#fields.hasErrors('email')}"
+                                    data-th-errors="*{email}"
+                                    class="text-red-600 px-1">
+                                </p> -->
+                            </div>
+                            
+                            <!-- password -->
+                            <div class="mb-3">
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <input 
+                                  name="password"
+                                  type="password" 
+                                  id="password" 
+                                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" " required />
+                                <!-- <p 
+                                  data-th-if="${#fields.hasErrors('password')}"
+                                  data-th-errors="*{password}"
+                                  class="text-red-600 px-1">
+                                </p>   -->
+                            </div>
+                            
+                            
+                            <!-- buttons -->
+                            <div class="mb-1 flex justify-center space-x-3">
+                                <button 
+                                  type="submit"
+                                  class="text-white bg-gray-600 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-7 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                               
+                                <button 
+                                  type="reset"
+                                  class="text-white bg-gray-600 hover:bg-gray-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-base px-7 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 ">Reset</button>
+                            </div>                          
+                        </form>
+                        <div class="flex items-center justify-center mt-6">
+                            <button class="px-4 py-1.5 border text-base font-semibold flex gap-2 border-slate-300 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-200 hover:shadow transition duration-150">
+                                <img class="w-5 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo">
+                                <a data-th-href="@{'/oauth2/authorization/google'}">Sign in with google</a>
+                            </button>
+                            
+                        </div>
+                        <div class="flex item-center justify-center my-3">
+                            <button class="px-4 py-1 border text-base font-semibold flex gap-2 border-slate-300 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-200 hover:shadow transition duration-150">
+                                <img class="w-6 h-5 bg-slate-100 rounded-xl dark:bg-slate-200" src="https://img.icons8.com/?size=100&id=62856&format=png&color=000000"alt="google logo">
+                                <a data-th-href="@{'/oauth2/authorization/github'}">Sign in with github</a>
+                            </button>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("Login Page");
+    </script>
+</body>
+</html>

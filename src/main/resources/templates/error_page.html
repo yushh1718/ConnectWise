@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title>Connect Wise</title>
+</head>
+<body>
+    <section id="content" class="text-center mt-5 md:w-1/2 mx-auto">
+         <div data-th-replace="message::messagebox"></div>         
+         <a href="/login" class="text-white bg-gray-700 hover:bg-gray-900 font-medium rounded-lg text-sm px-4 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700">
+            Login
+         </a>
+    </section>
+    <script>
+        console.log("Error Page");
+    </script>
+</body>
+</html>
